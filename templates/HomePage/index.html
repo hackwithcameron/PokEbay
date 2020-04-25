@@ -2,5 +2,15 @@
 {% load static %}
 {% block title %}{% endblock %}
 {% block content %}
-info here
+info here<br>
+
+
+{% for post in searchResult.item %}
+    {{ post.title.0 }}<br>
+    {{ post.location.0 }}<br>
+    {{ post.sellingStatus.0.currentPrice.0.__value__ }}<br>
+
+{% endfor %}
+
+
 {% endblock %}
