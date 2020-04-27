@@ -8,9 +8,10 @@ info here<br>
 {% for post in searchResult.item %}
     {{ post.title.0 }}<br>
     {{ post.location.0 }}<br>
-    {{ post.sellingStatus.0.currentPrice.0.__value__ }}<br>
+    {{ post.sellingStatus.0.currentPrice.0__value__ }}
+
+    <p>${{ itemPrice.post|floatformat:"2" }}</p>
+    <img src="{{ post.galleryURL.0 }}" alt="No Item Picture"><br>
 
 {% endfor %}
-
-
 {% endblock %}

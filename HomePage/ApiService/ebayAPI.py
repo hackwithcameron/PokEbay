@@ -10,16 +10,18 @@ class EbayAPI:
         self.urlProduction = 'https://svcs.ebay.com/services/search/FindingService/v1?'
         self.urlSandBox = 'https://svcs.sandbox.ebay.com/services/search/FindingService/v1'
 
-    def apiRequest(self):
+
+    def apiRequest(self, keyWords):
         payload = {
             'OPERATION-NAME': 'findCompletedItems',
-            'SECURITY-APPNAME': '{0}'.format(config('API_KEY_S')),
+            'SECURITY-APPNAME': '{0}'.format(config('API_KEY')),  # API_KEY = Production, API_KEY_S = SandBox
             'RESPONSE-DATA-FORMAT': 'JSON',
             'REST-PAYLOAD': '',
-            'keywords': 'Card',
+            'keywords': keyWords,
+            'paginationInput.entriesPerPage': '5',
         }
 
-        data = requests.get(url=self.urlSandBox, params=payload)
+        data = requests.get(url=self.urlProduction, params=payload)
         response = data.json()
         # response = json.loads(data.text)
         return response
