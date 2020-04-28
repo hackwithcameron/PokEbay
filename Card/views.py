@@ -18,8 +18,10 @@ class CardScraper:
 
     def getData(self):
         for data in self.tableRow:
-            if ":" in data.text or "Type" in data.text:
-                self.header.append(data.text.strip())
+            if "species" in data.text.lower() or "cards" in data.text.lower():
+                continue
+            if ":" in data.text or "type" in data.text.lower():
+                self.header.append(data.text.strip(":"))
             elif data.text.strip() is '':
                 self.info.append('0')
             else:
@@ -34,7 +36,9 @@ class CardScraper:
         :param csvName: The name of the CSV file DO NOT INCLUDE .CSV
         :return: Creates CSV file
         """
+        cardDict = {self.header[i]: self.info[i] for i in range(len(self.header))}
         with open('{}.csv'.format(csvName), mode='w') as csvFile:
-            pokemonWriter = csv.writer(csvFile, delimiter=',', quotechar='"', quoting=csv.QUOTE_MINIMAL)
-            pokemonWriter.writerow(self.header)
-            pokemonWriter.writerow(self.info)
+            fieldnames = self.header
+            pokemonWriter = csv.DictWriter(csvFile, fieldnames=fieldnames)
+            pokemonWriter.writeheader()
+            pokemonWriter.writerow(cardDict)
