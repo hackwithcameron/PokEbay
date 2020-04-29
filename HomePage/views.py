@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import View
 from .ApiService.ebayAPI import EbayAPI
 import json
-from Card.views import CardScraper
+
 
 class Index(View):
 

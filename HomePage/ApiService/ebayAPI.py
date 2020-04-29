@@ -1,5 +1,4 @@
 import json
-
 from decouple import config
 import requests
 
@@ -23,7 +22,6 @@ class EbayAPI:
 
         data = requests.get(url=self.urlProduction, params=payload)
         response = data.json()
-        # response = json.loads(data.text)
         return response
 
 
