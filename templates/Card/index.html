@@ -3,5 +3,9 @@
 {% block title %}Card{% endblock %}
 {% block content %}
 <p>{{ card.name }}</p>
+<p>{{ card.number }}</p>
+<p>{{ card.card_set.name }}</p>
+<img src="{{ card.card_set.symbol_url }}">
+
 <img src="{{ card.image_url }}">
 {% endblock %}
