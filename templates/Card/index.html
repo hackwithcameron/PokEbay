@@ -2,5 +2,6 @@
 {% load static %}
 {% block title %}Card{% endblock %}
 {% block content %}
-
+<p>{{ card.name }}</p>
+<img src="{{ card.image_url }}">
 {% endblock %}
