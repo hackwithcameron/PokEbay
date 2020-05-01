@@ -6,20 +6,24 @@ class CardSet(models.Model):
     ptcgo_code = models.CharField(max_length=20)
     name = models.CharField(max_length=25)
     series = models.CharField(max_length=25)
-    total_cards = models.IntegerField()
+    total_cards = models.IntegerField(null=True)
     release_date = models.DateField(null=True)
     symbol_url = models.URLField()
     logo_url = models.URLField()
 
+    card_sets = models.Manager()
+
+    def __str__(self):
+        return self.name
+
 
 class Card(models.Model):
     name = models.CharField(max_length=50)
-    national_pokedex_number = models.IntegerField()
+    national_pokedex_number = models.IntegerField(null=True)
     image_url = models.URLField()
     image_url_hi_res = models.URLField()
     subtype = models.CharField(max_length=50)
     supertype = models.CharField(max_length=50)
-    ancient_trait = models.CharField(max_length=50, null=True)
     hp = models.CharField(max_length=10)
     number = models.CharField(max_length=10)
     artist = models.CharField(max_length=50)
@@ -28,4 +32,9 @@ class Card(models.Model):
     card_set = models.ForeignKey(CardSet, on_delete=models.SET_NULL, null=True)
     set_code = models.CharField(max_length=50)
     types = models.CharField(max_length=20)
-    evolves_from = models.CharField(max_length=50)
+    evolves_from = models.CharField(max_length=50, null=True)
+
+    cards = models.Manager()
+
+    def __str__(self):
+        return self.name

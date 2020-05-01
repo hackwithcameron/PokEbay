@@ -42,7 +42,6 @@ class CardScraper:
         cardDictClean.update(titleDict)
         return cardDictClean
 
-
     def createCardCSV(self, csvName):
         """
         Creates CSV from card information scraped
@@ -50,7 +49,7 @@ class CardScraper:
         :return: Creates CSV file
         """
         cardDict = {self.header[i]: self.info[i] for i in range(len(self.header))}
-        with open('{}.csv'.format(csvName), mode='w') as csvFile:
+        with open(f'{csvName}.csv', mode='w') as csvFile:
             fieldnames = self.header
             pokemonWriter = csv.DictWriter(csvFile, fieldnames=fieldnames)
             pokemonWriter.writeheader()

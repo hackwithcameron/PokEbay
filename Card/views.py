@@ -1,17 +1,11 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.views import View
-from .scripts.pokedexAPI import PokedexAPI
-
-
-
+from .models import CardSet, Card
 
 class Index(View):
 
     def get(self, request):
-        pokedexAPI = PokedexAPI()
-        card = pokedexAPI.getCard('base', 15)
-
-
+        card = get_object_or_404(Card, number=1)
 
         context = {
             'card': card,

@@ -29,7 +29,10 @@ class PokedexAPI:
         :param cardNumEnd: Number of card to end with
         :return: List of cards in set with card numbers between cardNumStart and cardNum End
         """
-        return [self.getCard(cardSet, f'{x}') for x in range(cardNumStart, cardNumEnd + 1)]
+        return [self.getCard(cardSet.lower(), f'{x}') for x in range(cardNumStart, cardNumEnd + 1)]
+
+    def getSet(self, setName):
+        return Set.find(id=f"{self.setDict[setName].lower()}")
 
     def getAllSetIds(self):
         """
@@ -37,11 +40,10 @@ class PokedexAPI:
         :return: Prints list of sets to console
         """
         allCardSets = Set.all()
-        cardSetName = [sets.__getattribute__('name') for sets in allCardSets]
-        cardSetCode = [sets.__getattribute__('code') for sets in allCardSets]
+        cardSetName = [sets.name for sets in allCardSets]
+        cardSetCode = [sets.code for sets in allCardSets]
         self.setDict = {cardSetName[i].lower(): cardSetCode[i] for i in range(len(cardSetName))}
-        for i in range(len(cardSetName)):
-            self.cardSetList.append(f"Name: {cardSetName[i]}, Code: {cardSetCode[i]}")
+
 
     def createCardCSV(self, cardSet, cardNum):
         """
