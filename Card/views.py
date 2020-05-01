@@ -5,7 +5,7 @@ from .models import CardSet, Card
 class Index(View):
 
     def get(self, request):
-        card = get_object_or_404(Card, number=69)
+        card = get_object_or_404(Card, number=1)
 
         context = {
             'card': card,

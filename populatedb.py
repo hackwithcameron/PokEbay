@@ -3,6 +3,7 @@ import datetime
 import os
 import time
 
+
 def populate():
     start = time.time()
     pokedexAPI = PokedexAPI()
@@ -27,7 +28,7 @@ def populate():
     start = time.time()
 
     # Range of card numbers to add to 'Base' set
-    baseCards = pokedexAPI.getCards(base.name, 5, 69)
+    baseCards = pokedexAPI.getCards(base.name, 1, 69)
     end = time.time()
     print(f'Get cards time: {end - start}')
     start = time.time()

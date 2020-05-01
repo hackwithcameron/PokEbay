@@ -2,16 +2,15 @@
 {% load static %}
 {% block title %}PokEbay Home{% endblock %}
 {% block content %}
-info here<br>
-
-
-{% for post in searchResult.item %}
-    {{ post.title.0 }}<br>
-    {{ post.location.0 }}<br>
-    {{ post.sellingStatus.0.currentPrice.0__value__ }}
-
-    <p>${{ itemPrice.post|floatformat:"2" }}</p>
-    <img src="{{ post.galleryURL.0 }}" alt="No Item Picture"><br>
-
+{% for item in items.item %}
+    <br>
+    <br>
+    Name: {{ item.title.0 }}<br>
+    Location: {{ item.location.0 }}<br>
+    Sold price USD: ${{ item.sellingStatus.0.convertedCurrentPrice.0.value|floatformat:2 }}<br>
+    Buy It Now: {{ item.listingInfo.0.buyItNowAvailable.0 }}<br>
+    End Time: {{ item.listingInfo.0.endTime.0 }}<br>
+    <a href="{{ item.viewItemURL.0 }}" type="__blank"> <img src="{{ item.galleryURL.0 }}" alt="No Picture"></a><br>
 {% endfor %}
+
 {% endblock %}
