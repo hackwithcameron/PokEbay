@@ -2,10 +2,24 @@
 {% load static %}
 {% block title %}Card{% endblock %}
 {% block content %}
-<p>{{ card.name }}</p>
-<p>{{ card.number }}</p>
-<p>{{ card.card_set.name }}</p>
-<img src="{{ card.card_set.symbol_url }}">
+    <section>
+        {% for card in cards %}
+            <h3>{{ card.name }}</h3>
+            <img src="{{ card.image_url }}">
+        {% endfor %}
 
-<img src="{{ card.image_url }}">
+
+        {% if is_paginated %}
+            <nav aria-label="Page"></nav>
+            <ul class="pagination">
+                {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+                {% endif %}
+                {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+        {% endif %}
+            </ul>
+        {% endif %}
+    </section>
 {% endblock %}

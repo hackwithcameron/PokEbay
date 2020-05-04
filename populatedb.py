@@ -1,6 +1,4 @@
-import django
 import datetime
-import os
 import time
 
 
@@ -10,6 +8,7 @@ def populate():
     end = time.time()
     print(f'pokedexAPI time: {end - start}')
     start = time.time()
+    # What set you want to get cards from
     base = pokedexAPI.getSet('base')
     end = time.time()
     print(f'Get Set time: {end - start}')
@@ -88,7 +87,9 @@ def addSet(name, code, ptcgo_code, series, total_cards, release_date, symbol_url
 
 
 if __name__ == '__main__':
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pokEbay.settings.py')
+    import os
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'pokEbay.settings')
+    import django
     django.setup()
     from Card.models import Card, CardSet
     from Card.scripts.pokedexAPI import PokedexAPI
