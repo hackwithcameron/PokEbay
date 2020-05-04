@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.views import View
 from .ApiService.ebayAPI import EbayAPI
-import json
+from django.core.paginator import Paginator
 
 
 class Index(View):
