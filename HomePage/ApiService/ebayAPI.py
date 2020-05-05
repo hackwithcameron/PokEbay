@@ -20,7 +20,7 @@ class EbayAPI:
             'RESPONSE-DATA-FORMAT': 'JSON',
             'REST-PAYLOAD': '',
             'keywords': self.keyWords,
-            'paginationInput.entriesPerPage': '10',
+            'paginationInput.entriesPerPage': '20',
         }
 
         data = requests.get(url=self.urlProduction, params=payload)

@@ -1,0 +1,22 @@
+* {
+    box-sizing: border-box;
+}
+
+.container{
+    width: 100%;
+}
+
+.card{
+    margin: 20px auto;
+    width: 80%;
+    padding: 15px;
+    background-color: rgb(88, 67, 139);
+    border-radius: 15px;
+    position: relative;
+    overflow: hidden;
+}
+
+.backgroundImg{
+    position: absolute;
+    opacity: 0.05;
+}

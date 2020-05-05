@@ -2,24 +2,29 @@
 {% load static %}
 {% block title %}Card{% endblock %}
 {% block content %}
-    <section>
+<section>
+    <div class="container">
         {% for card in cards %}
-            <h3>{{ card.name }}</h3>
-            <img src="{{ card.image_url }}">
+            <div class="card">
+                <img class="backgroundImg" src="{{ card.image_url_hi_res }}">
+                <h3 class="cardName">{{ card.name }}</h3>
+                <img class="cardImg" src="{{ card.image_url }}">
+            </div>
         {% endfor %}
+    </div>
 
 
-        {% if is_paginated %}
-            <nav aria-label="Page"></nav>
-            <ul class="pagination">
-                {% if page_obj.has_previous %}
-                    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
-                {% endif %}
-                {% if page_obj.has_next %}
-                    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+    {% if is_paginated %}
+        <nav aria-label="Page"></nav>
+        <ul class="pagination">
+            {% if page_obj.has_previous %}
+                <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+            {% endif %}
+            {% if page_obj.has_next %}
+                <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
 
-        {% endif %}
-            </ul>
-        {% endif %}
-    </section>
+    {% endif %}
+        </ul>
+    {% endif %}
+</section>
 {% endblock %}

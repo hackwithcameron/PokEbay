@@ -6,30 +6,30 @@ def populate():
     start = time.time()
     pokedexAPI = PokedexAPI()
     end = time.time()
-    print(f'pokedexAPI time: {end - start}')
+    print(f'pokedexAPI time: {round(end - start, 2)}s')
     start = time.time()
     # What set you want to get cards from
     base = pokedexAPI.getSet('base')
     end = time.time()
-    print(f'Get Set time: {end - start}')
+    print(f'Get Set time: {round(end - start, 2)}s')
     start = time.time()
     baseCardSet = addSet(name=base.name,
                          code=base.code,
                          ptcgo_code=base.ptcgo_code,
                          series=base.series,
                          total_cards=base.total_cards,
-                         release_date=datetime.datetime.strptime(base.release_date, "%d/%m/%Y").strftime("%Y-%m-%d"),
+                         release_date=datetime.datetime.strptime(base.release_date, "%m/%d/%Y").strftime("%Y-%m-%d"),
                          symbol_url=base.symbol_url,
                          logo_url=base.logo_url)
 
     end = time.time()
-    print(f'Add set to Database time: {end - start}')
+    print(f'Add set to Database time: {round(end - start, 2)}s')
     start = time.time()
 
     # Range of card numbers to add to 'Base' set
     baseCards = pokedexAPI.getCards(base.name, 1, 69)
     end = time.time()
-    print(f'Get cards time: {end - start}')
+    print(f'Get cards time: {round(end - start, 2)}s')
     start = time.time()
     for card in baseCards:
         addCard(name=card.name,
@@ -49,7 +49,7 @@ def populate():
                 evolves_from=card.evolves_from)
 
     end = time.time()
-    print(f'Add cards to Database total time: {end - start}')
+    print(f'Add cards to Database total time: {round(end - start, 2)}s')
 
 
 def addCard(name, national_pokedex_number, image_url, image_url_hi_res,
@@ -98,4 +98,4 @@ if __name__ == '__main__':
     populate()
     end = time.time()
     print('Populate complete.')
-    print(f'Total Time: {end - total_time}')
+    print(f'Total Time: {round(end - total_time, 2)}s')
