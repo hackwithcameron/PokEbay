@@ -4,7 +4,7 @@ certifi==2020.4.5.1
 chardet==3.0.4
 Django==3.0.7
 idna==2.9
-pipenv==2018.11.26
+pipenv==2022.1.8
 pokemontcgsdk==2.0.0
 python-decouple==3.3
 pytz==2019.3
